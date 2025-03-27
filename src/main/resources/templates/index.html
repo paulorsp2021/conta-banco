@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conta Banco</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container my-2">
+        <h1>Conta Banco</h1>
+        <hr>
+        <h2>Menu</h2>
+        <a th:href = "@{/cadastraContaForm}" class="btn btn-primary btn-sm mb-3"> Cadastra Conta Usuario </a>
+
+        <table border="1" class = "table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Identificador</th>
+                    <th>Agencia</th>
+                    <th>Conta</th>
+                    <th>Saldo</th>
+                    <th colspan="3">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="conta : ${listContas}">
+                    <td th:text="${conta.id}"></td>
+                    <td th:text="${conta.agencia}"></td>
+                    <td th:text="${conta.conta}"></td>
+                    <td th:text="${conta.saldo}"></td>
+                    <td> <a th:href="@{/depositarForm/{id}(id=${conta.id})}" class="btn btn-primary">Depositar</a></td>
+                    <td> <a th:href="@{/retirarForm/{id}(id=${conta.id})}" class="btn btn-primary">Retirar</a></td>
+                    <td> <a th:href="@{/transferirForm/{id}(id=${conta.id})}" class="btn btn-primary">Transferir</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
